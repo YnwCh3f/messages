@@ -33,7 +33,7 @@ function App() {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       //console.log(currentUser);
       setUser(currentUser); 
-      if (currentUser.email == "bela@gmail.com") setAdmin(true);
+      if (currentUser && currentUser.email == "bela@gmail.com") setAdmin(true);
       else setAdmin(false);
       
     });
@@ -45,7 +45,7 @@ function App() {
       { path: "/", element: <Messages user={user} db={db} /> },
       { path: "/users", element: <Users db={db} /> },
       { path: "/about", element: <About /> },
-      { path: "/admin", element: <Admin/> },
+      { path: "/admin", element: <Admin admin={admin}/> },
       { path: "/login", element: <Login auth={auth} /> },
       { path: "*", element: <Notfound /> }
     ] }

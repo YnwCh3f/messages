@@ -1,11 +1,16 @@
 import React from 'react'
 import "./Admin.css";
+import { Navigate } from 'react-router-dom';
 
-const Admin = () => {
+const Admin = ({ admin }) => {
   return (
-    <div className='admin'>
-      
-    </div>
+    <>    {admin
+      ? <div className='admin'>
+          Admin
+        </div>
+      : <Navigate to="/" />
+    }
+   </>
   )
 }
 

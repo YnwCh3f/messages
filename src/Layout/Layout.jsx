@@ -16,7 +16,10 @@ const Layout = ({ user, logout, admin }) => {
         <Button color={pathname == "/users" ? "success" : "error"} onClick={() => navigate("/users")}>Users</Button>
         <Button color={pathname == "/about" ? "success" : "error"} onClick={() => navigate("/about")}>About</Button>
       </ButtonGroup>
-      {admin ? "Admin" : ""}
+      {admin 
+      ? <Button color={pathname == "/admin" ? "success" : "error"}variant='contained' onClick={() => navigate("/admin")}>Admin</Button>
+      : ""
+      }
       <div className='us'>
 
       {user 
