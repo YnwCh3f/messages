@@ -35,7 +35,7 @@ function App() {
   const router = createBrowserRouter([
     { path: "/", element: <Layout auth={auth} logout={logout} user={user} />, children:[
       { path: "/", element: <Messages user={user} db={db} /> },
-      { path: "/users", element: <Users /> },
+      { path: "/users", element: <Users db={db} /> },
       { path: "/about", element: <About /> },
       { path: "/login", element: <Login auth={auth} /> },
       { path: "*", element: <Notfound /> }
