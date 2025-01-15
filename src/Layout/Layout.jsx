@@ -2,9 +2,10 @@ import React from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { Button, ButtonGroup, Chip } from '@mui/material'
 import "../Menu/Menu.css";
+import "./Layout.css";
 
 
-const Layout = ({ user, logout, auth }) => {
+const Layout = ({ user, logout, admin }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   return (
@@ -15,7 +16,8 @@ const Layout = ({ user, logout, auth }) => {
         <Button color={pathname == "/users" ? "success" : "error"} onClick={() => navigate("/users")}>Users</Button>
         <Button color={pathname == "/about" ? "success" : "error"} onClick={() => navigate("/about")}>About</Button>
       </ButtonGroup>
-      <div>
+      {admin ? "Admin" : ""}
+      <div className='us'>
 
       {user 
         ? <>

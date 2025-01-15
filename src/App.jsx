@@ -12,6 +12,7 @@ import { getFirestore } from "firebase/firestore";
 import { firebaseConfig } from "../firebaseConfig.js";
 import Layout from './Layout/Layout.jsx';
 import { useEffect } from 'react';
+import Admin from './pages/Admin/Admin';
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
@@ -26,17 +27,25 @@ const logout = async () => {
 
 function App() {
   const [user, setUser] = useState(null);
+  const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      //console.log(currentUser);
+      setUser(currentUser); 
+      if (currentUser.email == "bela@gmail.com") setAdmin(true);
+      else setAdmin(false);
+      
+    });
     return () => unsubscribe;
   }, []);
 
   const router = createBrowserRouter([
-    { path: "/", element: <Layout auth={auth} logout={logout} user={user} />, children:[
+    { path: "/", element: <Layout admin={admin} auth={auth} logout={logout} user={user} />, children:[
       { path: "/", element: <Messages user={user} db={db} /> },
       { path: "/users", element: <Users db={db} /> },
       { path: "/about", element: <About /> },
+      { path: "/admin", element: <Admin/> },
       { path: "/login", element: <Login auth={auth} /> },
       { path: "*", element: <Notfound /> }
     ] }
