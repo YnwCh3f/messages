@@ -48,8 +48,8 @@ function App() {
       { path: "/admin", element: <Admin admin={admin}/> },
       { path: "/login", element: <Login auth={auth} /> },
       { path: "*", element: <Notfound /> }
-    ] }
-  ]);
+    ]}
+  ], { basename: '/messages/' });
 
   return (
     <div className='app'>
